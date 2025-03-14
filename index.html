@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input { width: 100%; font-size: 20px; padding: 10px; margin-bottom: 10px; }
+        button { width: 23%; font-size: 18px; padding: 10px; margin: 2px; cursor: pointer; }
+        .container { max-width: 400px; margin: auto; }
+    </style>
+</head>
+<body>
+    <h2>Scientific Calculator</h2>
+    <div class="container">
+        <input type="text" id="display" readonly>
+        <br>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="backspace()">←</button>
+        <button onclick="appendOperator('/')">/</button>
+        <button onclick="appendOperator('*')">*</button>
+        <br>
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+        <button onclick="appendOperator('-')">-</button>
+        <br>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+        <button onclick="appendOperator('+')">+</button>
+        <br>
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+        <button onclick="calculateResult()">=</button>
+        <br>
+        <button onclick="appendNumber(0)">0</button>
+        <button onclick="appendOperator('.')">.</button>
+        <button onclick="appendOperator('(')">(</button>
+        <button onclick="appendOperator(')')">)</button>
+        <br>
+        <button onclick="appendOperator('Math.sin(')">sin</button>
+        <button onclick="appendOperator('Math.cos(')">cos</button>
+        <button onclick="appendOperator('Math.tan(')">tan</button>
+        <button onclick="appendOperator('Math.sqrt(')">√</button>
+        <br>
+        <button onclick="appendOperator('Math.log(')">log</button>
+        <button onclick="appendOperator('Math.exp(')">exp</button>
+        <button onclick="appendOperator('**')">^</button>
+        <button onclick="appendOperator('Math.PI')">π</button>
+    </div>
+
+    <script>
+        function appendNumber(num) {
+            document.getElementById("display").value += num;
+        }
+
+        function appendOperator(op) {
+            document.getElementById("display").value += op;
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function backspace() {
+            let display = document.getElementById("display");
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculateResult() {
+            let expression = document.getElementById("display").value;
+            try {
+                let result = eval(expression);
+                document.getElementById("display").value = result;
+            } catch {
+                document.getElementById("display").value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
